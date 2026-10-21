@@ -28,7 +28,6 @@
         }
     </script>
     <style>
-        /* Smooth scrolling and hide scrollbar for clean UI */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -55,13 +54,11 @@
                 <h2 class="text-lg font-bold text-gray-900">Welcome Back, Amina</h2>
                 <p class="text-xs text-gray-500 mb-4">Enter your Security PIN or use Face ID</p>
 
-                <!-- Demo PIN Helper Badge -->
                 <div class="bg-vault-50 border border-vault-600/20 text-vault-800 text-xs px-3.5 py-1.5 rounded-xl mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-key text-vault-600"></i>
                     <span>Demo PIN: <strong class="underline font-mono">1234</strong> (or any 4 digits)</span>
                 </div>
 
-                <!-- 4 Digit PIN Inputs -->
                 <div class="flex gap-3 mb-5">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
@@ -92,18 +89,20 @@
 
 
         <!-- ================= SCREEN 2: MAIN DASHBOARD ================= -->
-        <div id="screen-dashboard" class="screen hidden flex flex-col h-full bg-gray-50 relative">
-            
-            <!-- Sticky Fixed Header Bar -->
-            <div class="bg-vault-700 text-white p-5 pb-5 rounded-b-3xl shadow-md sticky top-0 z-30 flex-shrink-0">
+        <div id="screen-dashboard" class="screen hidden flex flex-col h-full bg-gray-50">
+            <!-- Full Header Bar (Visible & Properly Framed) -->
+            <div class="bg-vault-700 text-white p-5 pb-5 rounded-b-3xl shadow-md flex-shrink-0">
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center font-bold text-white text-sm border border-white/20">
                             AR
                         </div>
                         <div>
-                            <h2 class="font-bold text-base leading-tight">Amina Rahal</h2>
-                            <p class="text-[11px] text-vault-100/80">Vault ID: #HEALTH-2026-AR</p>
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-heart-pulse text-vault-300 text-xs"></i>
+                                <h1 class="font-bold text-xs text-vault-200 tracking-wide uppercase">My Health Folder</h1>
+                            </div>
+                            <h2 class="font-bold text-base leading-tight mt-0.5">Amina Rahal</h2>
                         </div>
                     </div>
                     <button onclick="lockApp()" title="Lock Vault" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition">
@@ -111,24 +110,23 @@
                     </button>
                 </div>
 
-                <!-- Live Search Bar -->
+                <!-- Search Bar -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-sm"></i>
                     <input type="text" id="search-input" oninput="filterDocuments(this.value)" placeholder="Search lab tests, prescriptions, doctors..." class="w-full bg-white text-gray-800 text-sm rounded-2xl pl-11 pr-4 py-3 focus:outline-none shadow-sm placeholder-gray-400">
                 </div>
             </div>
 
-            <!-- Scrollable Body Content -->
+            <!-- Dashboard Content -->
             <div class="p-5 flex-1 overflow-y-auto pb-28 space-y-6">
-                
-                <!-- Quick Access Stars Carousel -->
+                <!-- Quick Access Stars -->
                 <div>
                     <div class="flex justify-between items-center mb-3">
                         <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Quick Access Stars</h3>
                         <span class="text-xs text-vault-700 font-semibold bg-vault-100 px-2.5 py-0.5 rounded-full">3 Starred</span>
                     </div>
                     <div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                        <div onclick="openDocumentDetail('Complete Blood Count', 'Lab Results', '2026-10-02', 'St. Jude Health Clinic', 'REC-2772', '1.4 MB', 'All levels in optimal range. Next checkup in 6 months.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
+                        <div onclick="openDocumentDetail('Complete Blood Count (CBC)', 'Lab Results', '2026-10-02', 'St. Jude Health Clinic', 'REC-2772', '1.4 MB', 'All levels in optimal range. Next checkup in 6 months.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] bg-blue-50 text-blue-700 font-bold px-2 py-0.5 rounded-md">LAB</span>
                                 <i class="fa-solid fa-star text-amber-400 text-xs"></i>
@@ -144,7 +142,7 @@
                             <h4 class="font-semibold text-xs text-gray-800 truncate">Amoxicillin Prescr...</h4>
                             <p class="text-[10px] text-gray-400 mt-1">2026-09-18</p>
                         </div>
-                        <div onclick="openDocumentDetail('Chest X-Ray Digital Copy', 'Imaging / X-Ray', '2026-08-11', 'Metro Radiology Clinic', 'REC-0492', '4.2 MB', 'Clear lung fields. No acute infiltrates.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
+                        <div onclick="openDocumentDetail('Chest X-Ray Digital Copy', 'Imaging / X-Ray', '2026-08-11', 'Metro Radiology Center', 'REC-0492', '4.2 MB', 'Lungs clear, no acute cardiopulmonary disease observed.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
                             <div class="flex justify-between items-start mb-2">
                                 <span class="text-[10px] bg-purple-50 text-purple-700 font-bold px-2 py-0.5 rounded-md">X-RAY</span>
                                 <i class="fa-solid fa-star text-amber-400 text-xs"></i>
@@ -155,7 +153,7 @@
                     </div>
                 </div>
 
-                <!-- Cleaned Categories Section (Instructor Feedback Integrated) -->
+                <!-- Cleaned Category Cards (Pia Anna Lena Svensson Feedback) -->
                 <div>
                     <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Categories</h3>
                     <div class="grid grid-cols-4 gap-3">
@@ -165,4 +163,81 @@
                         </div>
                         <div onclick="filterByCategory('Prescription')" class="bg-emerald-50/80 hover:bg-emerald-100 border border-emerald-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
                             <i class="fa-solid fa-pills text-emerald-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="text-[11px] font-semibold text-emerald
+                            <span class="text-[11px] font-semibold text-emerald-900 leading-tight">Pharmacy</span>
+                        </div>
+                        <div onclick="filterByCategory('Imaging / X-Ray')" class="bg-purple-50/80 hover:bg-purple-100 border border-purple-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
+                            <i class="fa-solid fa-file-medical text-purple-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
+                            <span class="text-[11px] font-semibold text-purple-900 leading-tight">Imaging</span>
+                        </div>
+                        <div onclick="filterByCategory('Vaccination')" class="bg-amber-50/80 hover:bg-amber-100 border border-amber-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
+                            <i class="fa-solid fa-syringe text-amber-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
+                            <span class="text-[11px] font-semibold text-amber-900 leading-tight">Vaccines</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Documents -->
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Recent Documents</h3>
+                        <span id="doc-count" class="text-xs text-gray-400">3 records</span>
+                    </div>
+                    <div id="document-list" class="space-y-3">
+                        <div onclick="openDocumentDetail('Complete Blood Count (CBC)', 'Lab Results', '2026-10-02', 'St. Jude Health Clinic', 'REC-2772', '1.4 MB', 'All levels in optimal range. Next checkup in 6 months.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm text-gray-900">Complete Blood Count (CBC)</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">2026-10-02 • St. Jude Health Clinic</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-bold bg-blue-50 text-blue-700 px-2.5 py-1 rounded-lg">LAB RESULTS</span>
+                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div onclick="openDocumentDetail('Amoxicillin Prescription', 'Prescription', '2026-09-18', 'Dr. Sarah Jenkins', 'REC-1983', '850 KB', 'Dosage: 500mg 3x daily for 7 days.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fa-solid fa-prescription"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm text-gray-900">Amoxicillin Prescription</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">2026-09-18 • Dr. Sarah Jenkins</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg">PRESCRIPTION</span>
+                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div onclick="openDocumentDetail('Chest X-Ray Digital Copy', 'Imaging / X-Ray', '2026-08-11', 'Metro Radiology Center', 'REC-0492', '4.2 MB', 'Lungs clear, no acute cardiopulmonary disease observed.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fa-solid fa-x-ray"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm text-gray-900">Chest X-Ray Digital Copy</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">2026-08-11 • Metro Radiology Center</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-bold bg-purple-50 text-purple-700 px-2.5 py-1 rounded-lg">IMAGING / X-RAY</span>
+                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Nav Bar -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center z-30 shadow-lg">
+                <button onclick="switchScreen('screen-dashboard')" class="flex flex-col items-center text-vault-700">
+                    <i class="fa-solid fa-folder-open text-lg"></i>
+                    <span class="text-[10px] font-semibold mt-1">Folder</span>
+                </button>
+                <button onclick="switchScreen('screen-scanner')" class="flex flex-col items-center text-white bg-vault-
