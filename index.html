@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Health Folder - Secure Vault</title>
+    <title>My Health Folder - Encrypted Health Vault</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -16,6 +16,7 @@
                         vault: {
                             50: '#f0fdf4',
                             100: '#dcfce7',
+                            500: '#14b8a6',
                             600: '#0d9488',
                             700: '#0f766e',
                             800: '#115e59',
@@ -26,48 +27,53 @@
             }
         }
     </script>
+    <style>
+        /* Smooth scrolling and hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-800 h-full flex justify-center items-center font-sans antialiased m-0 p-0">
+<body class="bg-slate-900 text-gray-800 h-full flex justify-center items-center font-sans antialiased m-0 p-0 selection:bg-teal-500 selection:text-white">
 
-    <!-- Mobile Device Container Wrapper -->
-    <div id="app-container" class="w-full max-w-md h-full md:h-[880px] md:rounded-3xl bg-gray-50 shadow-2xl flex flex-col relative overflow-hidden">
+    <!-- Mobile Device Container Frame -->
+    <div id="app-container" class="w-full max-w-md h-full md:h-[880px] md:rounded-[40px] bg-white shadow-2xl flex flex-col relative overflow-hidden md:border-8 md:border-slate-800">
         
-        <!-- ================= SCREEN 1: LOGIN / PIN AUTH ================= -->
-        <div id="screen-login" class="screen flex flex-col h-full bg-gradient-to-br from-vault-800 via-vault-700 to-gray-900 text-white p-6 justify-between">
-            <div class="flex flex-col items-center pt-8">
-                <div class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-inner mb-4 border border-white/20">
+        <!-- ================= SCREEN 1: LOGIN / SECURITY ACCESS ================= -->
+        <div id="screen-login" class="screen flex flex-col h-full bg-gradient-to-br from-vault-800 via-vault-700 to-slate-900 text-white p-6 justify-between overflow-y-auto">
+            <div class="flex flex-col items-center pt-6">
+                <div class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center shadow-inner mb-4 border border-white/20">
                     <i class="fa-solid fa-heart-pulse text-4xl text-vault-100"></i>
                 </div>
                 <h1 class="text-2xl font-bold tracking-tight">My Health Folder</h1>
                 <p class="text-xs text-vault-100/80 mt-1">Encrypted Health Vault • Amina Rahal</p>
             </div>
 
-            <div class="bg-white text-gray-800 rounded-3xl p-6 shadow-xl w-full max-w-sm mx-auto flex flex-col items-center">
+            <div class="bg-white text-gray-800 rounded-3xl p-6 shadow-2xl w-full max-w-sm mx-auto flex flex-col items-center my-auto">
                 <div class="w-16 h-16 bg-vault-50 rounded-full flex items-center justify-center text-vault-700 text-xl font-bold mb-3 border-2 border-vault-600/30">
                     AR
                 </div>
-                <h2 class="text-lg font-semibold text-gray-900">Welcome Back, Amina</h2>
+                <h2 class="text-lg font-bold text-gray-900">Welcome Back, Amina</h2>
                 <p class="text-xs text-gray-500 mb-4">Enter your Security PIN or use Face ID</p>
 
-                <!-- Demo PIN Helper Notice -->
-                <div class="bg-vault-50 border border-vault-600/20 text-vault-800 text-xs px-3 py-1.5 rounded-xl mb-4 flex items-center gap-2">
+                <!-- Demo PIN Helper Badge -->
+                <div class="bg-vault-50 border border-vault-600/20 text-vault-800 text-xs px-3.5 py-1.5 rounded-xl mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-key text-vault-600"></i>
                     <span>Demo PIN: <strong class="underline font-mono">1234</strong> (or any 4 digits)</span>
                 </div>
 
                 <!-- 4 Digit PIN Inputs -->
-                <div class="flex gap-3 mb-6">
+                <div class="flex gap-3 mb-5">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
                     <input type="password" maxlength="1" class="pin-input w-12 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-2xl focus:border-vault-600 focus:outline-none bg-gray-50 transition shadow-sm" inputmode="numeric">
                 </div>
 
-                <button onclick="handleLogin()" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-medium py-3.5 rounded-2xl shadow-lg shadow-vault-600/30 transition flex items-center justify-center gap-2">
+                <button onclick="handleLogin()" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-vault-600/30 transition flex items-center justify-center gap-2">
                     Unlock Folder
                 </button>
 
-                <div class="relative flex py-4 items-center w-full">
+                <div class="relative flex py-3 items-center w-full">
                     <div class="flex-grow border-t border-gray-200"></div>
                     <span class="flex-shrink mx-4 text-gray-400 text-xs uppercase tracking-wider">or</span>
                     <div class="flex-grow border-t border-gray-200"></div>
@@ -80,48 +86,51 @@
             </div>
 
             <div class="text-center pb-2">
-                <p class="text-[11px] text-gray-400"><i class="fa-solid fa-shield-halved mr-1"></i> Protected with 256-Bit Encrypted Vault Standard</p>
+                <p class="text-[11px] text-gray-300"><i class="fa-solid fa-shield-halved mr-1 text-vault-400"></i> Protected with 256-Bit Encrypted Vault Standard</p>
             </div>
         </div>
 
 
         <!-- ================= SCREEN 2: MAIN DASHBOARD ================= -->
-        <div id="screen-dashboard" class="screen hidden flex flex-col h-full bg-gray-50 overflow-y-auto">
-            <!-- Top Header -->
-            <div class="bg-vault-700 text-white p-5 pb-6 rounded-b-3xl shadow-md">
+        <div id="screen-dashboard" class="screen hidden flex flex-col h-full bg-gray-50 relative">
+            
+            <!-- Sticky Fixed Header Bar -->
+            <div class="bg-vault-700 text-white p-5 pb-5 rounded-b-3xl shadow-md sticky top-0 z-30 flex-shrink-0">
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center font-bold text-white text-base">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center font-bold text-white text-sm border border-white/20">
                             AR
                         </div>
                         <div>
                             <h2 class="font-bold text-base leading-tight">Amina Rahal</h2>
-                            <p class="text-xs text-vault-100/80">Vault ID: #HEALTH-2026-AR</p>
+                            <p class="text-[11px] text-vault-100/80">Vault ID: #HEALTH-2026-AR</p>
                         </div>
                     </div>
-                    <button onclick="lockApp()" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition">
-                        <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                    <button onclick="lockApp()" title="Lock Vault" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition">
+                        <i class="fa-solid fa-right-from-bracket text-xs"></i>
                     </button>
                 </div>
 
-                <!-- Search Bar -->
+                <!-- Live Search Bar -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-sm"></i>
                     <input type="text" id="search-input" oninput="filterDocuments(this.value)" placeholder="Search lab tests, prescriptions, doctors..." class="w-full bg-white text-gray-800 text-sm rounded-2xl pl-11 pr-4 py-3 focus:outline-none shadow-sm placeholder-gray-400">
                 </div>
             </div>
 
-            <div class="p-5 flex-1 pb-24">
+            <!-- Scrollable Body Content -->
+            <div class="p-5 flex-1 overflow-y-auto pb-28 space-y-6">
+                
                 <!-- Quick Access Stars Carousel -->
-                <div class="mb-6">
+                <div>
                     <div class="flex justify-between items-center mb-3">
                         <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Quick Access Stars</h3>
-                        <span class="text-xs text-vault-700 font-semibold bg-vault-100 px-2 py-0.5 rounded-full">3 Starred</span>
+                        <span class="text-xs text-vault-700 font-semibold bg-vault-100 px-2.5 py-0.5 rounded-full">3 Starred</span>
                     </div>
-                    <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+                    <div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
                         <div onclick="openDocumentDetail('Complete Blood Count', 'Lab Results', '2026-10-02', 'St. Jude Health Clinic', 'REC-2772', '1.4 MB', 'All levels in optimal range. Next checkup in 6 months.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
                             <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] bg-amber-50 text-amber-700 font-bold px-2 py-0.5 rounded-md">LAB</span>
+                                <span class="text-[10px] bg-blue-50 text-blue-700 font-bold px-2 py-0.5 rounded-md">LAB</span>
                                 <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                             </div>
                             <h4 class="font-semibold text-xs text-gray-800 truncate">Complete Blood C...</h4>
@@ -129,7 +138,7 @@
                         </div>
                         <div onclick="openDocumentDetail('Amoxicillin Prescription', 'Prescription', '2026-09-18', 'Dr. Sarah Jenkins', 'REC-1983', '850 KB', 'Dosage: 500mg 3x daily for 7 days.')" class="min-w-[160px] bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0">
                             <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] bg-blue-50 text-blue-700 font-bold px-2 py-0.5 rounded-md">PRESCRIPTION</span>
+                                <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded-md">PRESCRIPTION</span>
                                 <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                             </div>
                             <h4 class="font-semibold text-xs text-gray-800 truncate">Amoxicillin Prescr...</h4>
@@ -146,8 +155,8 @@
                     </div>
                 </div>
 
-                <!-- Refactored Categories Section (Pia's Feedback Implemented: Clean, Clutter-Free Cards with Unified Background Tints and Larger Icons) -->
-                <div class="mb-6">
+                <!-- Cleaned Categories Section (Instructor Feedback Integrated) -->
+                <div>
                     <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Categories</h3>
                     <div class="grid grid-cols-4 gap-3">
                         <div onclick="filterByCategory('Lab Results')" class="bg-blue-50/80 hover:bg-blue-100 border border-blue-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
@@ -156,390 +165,4 @@
                         </div>
                         <div onclick="filterByCategory('Prescription')" class="bg-emerald-50/80 hover:bg-emerald-100 border border-emerald-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
                             <i class="fa-solid fa-pills text-emerald-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="text-[11px] font-semibold text-emerald-900 leading-tight">Pharmacy</span>
-                        </div>
-                        <div onclick="filterByCategory('Imaging / X-Ray')" class="bg-purple-50/80 hover:bg-purple-100 border border-purple-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
-                            <i class="fa-solid fa-file-medical text-purple-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="text-[11px] font-semibold text-purple-900 leading-tight">Imaging</span>
-                        </div>
-                        <div onclick="filterByCategory('Vaccination')" class="bg-amber-50/80 hover:bg-amber-100 border border-amber-100 p-3 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition group">
-                            <i class="fa-solid fa-syringe text-amber-600 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="text-[11px] font-semibold text-amber-900 leading-tight">Vaccines</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Documents List -->
-                <div>
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Recent Documents</h3>
-                        <span id="doc-count" class="text-xs text-gray-400">3 records</span>
-                    </div>
-                    <div id="document-list" class="space-y-3">
-                        <!-- Item 1 -->
-                        <div onclick="openDocumentDetail('Complete Blood Count', 'Lab Results', '2026-10-02', 'St. Jude Health Clinic', 'REC-2772', '1.4 MB', 'All levels in optimal range. Next checkup in 6 months.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
-                                    <i class="fa-solid fa-file-lines"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-sm text-gray-900">Complete Blood Count (...)</h4>
-                                    <p class="text-xs text-gray-400 mt-0.5">2026-10-02 • St. Jude Health Clinic</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-[10px] font-bold bg-blue-50 text-blue-700 px-2.5 py-1 rounded-lg">LAB RESULTS</span>
-                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div onclick="openDocumentDetail('Amoxicillin Prescription', 'Prescription', '2026-09-18', 'Dr. Sarah Jenkins', 'REC-1983', '850 KB', 'Dosage: 500mg 3x daily for 7 days.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-11 h-11 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
-                                    <i class="fa-solid fa-prescription"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-sm text-gray-900">Amoxicillin Prescription</h4>
-                                    <p class="text-xs text-gray-400 mt-0.5">2026-09-18 • Dr. Sarah Jenkins</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg">PRESCRIPTION</span>
-                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div onclick="openDocumentDetail('Chest X-Ray Digital Copy', 'Imaging / X-Ray', '2026-08-11', 'Metro Radiology Clinic', 'REC-0492', '4.2 MB', 'Clear lung fields. No acute infiltrates.')" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-base flex-shrink-0">
-                                    <i class="fa-solid fa-x-ray"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-sm text-gray-900">Chest X-Ray Digital Copy (...)</h4>
-                                    <p class="text-xs text-gray-400 mt-0.5">2026-08-11 • Metro Radiology...</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-[10px] font-bold bg-purple-50 text-purple-700 px-2.5 py-1 rounded-lg">IMAGING / X-RAY</span>
-                                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Navigation Bar -->
-            <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center z-10 shadow-lg">
-                <button onclick="switchScreen('screen-dashboard')" class="flex flex-col items-center text-vault-700">
-                    <i class="fa-solid fa-folder-open text-lg"></i>
-                    <span class="text-[10px] font-medium mt-1">Folder</span>
-                </button>
-                <button onclick="switchScreen('screen-scanner')" class="flex flex-col items-center text-white bg-vault-600 hover:bg-vault-700 w-12 h-12 rounded-full -mt-5 shadow-md shadow-vault-600/40 justify-center">
-                    <i class="fa-solid fa-plus text-lg"></i>
-                </button>
-                <button onclick="alert('Insights & Health Analytics active.')" class="flex flex-col items-center text-gray-400 hover:text-gray-600">
-                    <i class="fa-solid fa-chart-line text-lg"></i>
-                    <span class="text-[10px] font-medium mt-1">Insights</span>
-                </button>
-            </div>
-        </div>
-
-
-        <!-- ================= SCREEN 3: SCANNER & UPLOAD ================= -->
-        <div id="screen-scanner" class="screen hidden flex flex-col h-full bg-gray-900 text-white p-6 justify-between">
-            <div class="flex justify-between items-center pt-2">
-                <button onclick="switchScreen('screen-dashboard')" class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition">
-                    <i class="fa-solid fa-arrow-left text-sm"></i>
-                </button>
-                <h2 class="font-bold text-base">Scan / Upload Document</h2>
-                <div class="w-10"></div>
-            </div>
-
-            <!-- Camera Viewfinder Simulation -->
-            <div class="flex flex-col items-center my-auto">
-                <div class="w-16 h-16 bg-vault-600/20 rounded-full flex items-center justify-center text-vault-400 mb-4 border border-vault-500/30">
-                    <i class="fa-solid fa-camera text-2xl"></i>
-                </div>
-                <p class="text-sm font-semibold text-gray-200">Position Document in Frame</p>
-                <p class="text-xs text-gray-400 mt-1 mb-6">Camera feed auto-detects page edges</p>
-
-                <!-- Viewfinder Box -->
-                <div class="w-72 h-96 border-2 border-dashed border-vault-500 rounded-3xl relative flex items-center justify-center bg-black/40 overflow-hidden shadow-2xl">
-                    <div class="absolute inset-4 border border-vault-400/30 rounded-2xl"></div>
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-vault-600/80 text-white text-[11px] px-3 py-1 rounded-full backdrop-blur-sm">
-                        Ready for capture
-                    </div>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="space-y-3 pb-4">
-                <button onclick="captureScan()" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-medium py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-camera"></i> Take Photo / Capture Scan
-                </button>
-                <div class="relative flex py-1 items-center">
-                    <div class="flex-grow border-t border-gray-800"></div>
-                    <span class="flex-shrink mx-3 text-gray-500 text-xs">OR</span>
-                    <div class="flex-grow border-t border-gray-800"></div>
-                </div>
-                <label class="w-full bg-white/10 hover:bg-white/15 border border-white/10 text-white font-medium py-3.5 rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer text-sm">
-                    <i class="fa-solid fa-file-arrow-up text-vault-400"></i> Upload Existing PDF / Image
-                    <input type="file" onchange="captureScan()" class="hidden">
-                </label>
-            </div>
-        </div>
-
-
-        <!-- ================= SCREEN 4: METADATA TAGGING ================= -->
-        <div id="screen-tagging" class="screen hidden flex flex-col h-full bg-gray-50 overflow-y-auto">
-            <div class="bg-white border-b border-gray-100 p-5 flex items-center justify-between sticky top-0 z-10">
-                <button onclick="switchScreen('screen-scanner')" class="w-9 h-9 bg-gray-100 rounded-xl flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
-                    <i class="fa-solid fa-arrow-left text-sm"></i>
-                </button>
-                <h2 class="font-bold text-base text-gray-800">Document Details</h2>
-                <div class="w-9"></div>
-            </div>
-
-            <div class="p-5 space-y-4 flex-1">
-                <!-- Scan Ready Banner -->
-                <div class="bg-vault-50 border border-vault-600/20 p-4 rounded-2xl flex items-center gap-3">
-                    <div class="w-10 h-10 bg-vault-600 text-white rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fa-solid fa-file-circle-check text-base"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-xs text-vault-900">Scan Ready</h4>
-                        <p class="text-[11px] text-vault-700/80">Add metadata labels below to index in Amina's vault.</p>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Document Title *</label>
-                    <input type="text" id="tag-title" value="Scanned Lab Document 15/10/2026" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-vault-600 focus:outline-none shadow-sm">
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Category *</label>
-                        <select id="tag-category" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-vault-600 focus:outline-none shadow-sm">
-                            <option>Lab Results</option>
-                            <option>Prescription</option>
-                            <option>Imaging / X-Ray</option>
-                            <option>Vaccination</option>
-                            <option>General Report</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Date *</label>
-                        <input type="date" id="tag-date" value="2026-10-15" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-vault-600 focus:outline-none shadow-sm">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Clinic / Provider Source Name</label>
-                    <input type="text" id="tag-clinic" placeholder="e.g. St. Jude Health Clinic" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-vault-600 focus:outline-none shadow-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Notes / Key Findings Summary</label>
-                    <textarea id="tag-notes" rows="3" placeholder="e.g. All levels in optimal range. Next checkup in 6 months." class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-vault-600 focus:outline-none shadow-sm resize-none"></textarea>
-                </div>
-
-                <div class="flex items-center gap-2 pt-2">
-                    <input type="checkbox" id="tag-quick-access" checked class="w-4 h-4 text-vault-600 rounded border-gray-300 focus:ring-vault-500">
-                    <label for="tag-quick-access" class="text-xs font-medium text-gray-700">Add to Quick Access Stars</label>
-                </div>
-
-                <button onclick="saveDocument()" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-medium py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 mt-4">
-                    <i class="fa-solid fa-floppy-disk"></i> Save Document to Folder
-                </button>
-            </div>
-        </div>
-
-
-        <!-- ================= SCREEN 5: SUCCESS MODAL SCREEN ================= -->
-        <div id="screen-success" class="screen hidden flex flex-col h-full bg-gray-900/60 backdrop-blur-sm p-6 justify-center items-center absolute inset-0 z-50">
-            <div class="bg-white rounded-3xl p-6 shadow-2xl w-full max-w-sm text-center animate-fade-in">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900">Document Saved Successfully!</h3>
-                <p id="success-doc-name" class="text-xs text-gray-500 mt-1 mb-6">Scanned Lab Document 15/10/2026</p>
-
-                <div class="space-y-3">
-                    <button onclick="viewSavedDocument()" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-medium py-3 rounded-2xl shadow-md transition text-sm">
-                        View Document
-                    </button>
-                    <button onclick="switchScreen('screen-dashboard')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-2xl transition text-sm">
-                        Return to Home
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- ================= SCREEN 6: DOCUMENT DETAIL VIEW ================= -->
-        <div id="screen-detail" class="screen hidden flex flex-col h-full bg-gray-50 overflow-y-auto">
-            <div class="bg-vault-700 text-white p-5 flex items-center justify-between sticky top-0 z-10 shadow-md">
-                <button onclick="switchScreen('screen-dashboard')" class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition">
-                    <i class="fa-solid fa-arrow-left text-sm"></i>
-                </button>
-                <h2 id="detail-title-header" class="font-bold text-sm truncate max-w-[220px]">Document Details</h2>
-                <button onclick="toggleStarCurrentDoc()" class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition text-amber-300">
-                    <i id="detail-star-icon" class="fa-solid fa-star text-sm"></i>
-                </button>
-            </div>
-
-            <div class="p-5 space-y-5 flex-1">
-                <!-- High Resolution Document Card Preview -->
-                <div class="bg-gradient-to-br from-gray-900 to-vault-900 text-white p-6 rounded-3xl shadow-xl flex flex-col items-center text-center relative overflow-hidden">
-                    <div class="absolute top-4 right-4 bg-white/10 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase text-vault-200" id="detail-badge-cat">
-                        LAB RESULTS
-                    </div>
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-vault-300 mb-4 text-3xl mt-2">
-                        <i class="fa-solid fa-file-pdf"></i>
-                    </div>
-                    <h3 id="detail-title" class="font-bold text-base text-white">Complete Blood Count</h3>
-                    <p id="detail-date" class="text-xs text-vault-200 mt-1">2026-10-02</p>
-
-                    <div class="w-full grid grid-cols-3 gap-2 mt-6 pt-4 border-t border-white/10 text-center">
-                        <div>
-                            <span class="block text-[10px] text-gray-400 uppercase">Record ID</span>
-                            <strong id="detail-id" class="text-xs text-gray-200 font-mono">REC-2772</strong>
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 uppercase">File Size</span>
-                            <strong id="detail-size" class="text-xs text-gray-200">1.4 MB</strong>
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 uppercase">Security</span>
-                            <strong class="text-xs text-emerald-400">Encrypted</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clinical Notes Box -->
-                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Clinical Notes & Summary</h4>
-                    <p id="detail-notes" class="text-sm text-gray-700 leading-relaxed">
-                        All levels in optimal range. Next checkup in 6 months.
-                    </p>
-                </div>
-
-                <!-- Actions -->
-                <div class="space-y-3 pt-2">
-                    <button onclick="alert('Downloading PDF file to device secure downloads folder...')" class="w-full bg-vault-600 hover:bg-vault-700 text-white font-medium py-3.5 rounded-2xl shadow-md transition flex items-center justify-center gap-2 text-sm">
-                        <i class="fa-solid fa-download"></i> Download PDF Copy
-                    </button>
-                    <div class="flex gap-3">
-                        <button onclick="alert('Sharing encrypted document secure link...')" class="flex-1 bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-medium py-3 rounded-2xl transition flex items-center justify-center gap-2 text-sm shadow-sm">
-                            <i class="fa-solid fa-share-nodes text-vault-600"></i> Share
-                        </button>
-                        <button onclick="confirmDeleteDocument()" class="flex-1 bg-white hover:bg-rose-50 border border-gray-200 text-rose-600 font-medium py-3 rounded-2xl transition flex items-center justify-center gap-2 text-sm shadow-sm">
-                            <i class="fa-solid fa-trash-can"></i> Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Switch between screens
-        function switchScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
-            document.getElementById(screenId).classList.remove('hidden');
-        }
-
-        // Handle PIN login auto-advance & submission
-        const pinInputs = document.querySelectorAll('.pin-input');
-        pinInputs.forEach((input, index) => {
-            input.addEventListener('input', (e) => {
-                if (e.target.value && index < pinInputs.length - 1) {
-                    pinInputs[index + 1].focus();
-                }
-                if (Array.from(pinInputs).every(inp => inp.value !== '')) {
-                    handleLogin();
-                }
-            });
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && !input.value && index > 0) {
-                    pinInputs[index - 1].focus();
-                }
-            });
-        });
-
-        function handleLogin() {
-            switchScreen('screen-dashboard');
-        }
-
-        function triggerFaceId() {
-            setTimeout(() => {
-                switchScreen('screen-dashboard');
-            }, 400);
-        }
-
-        function lockApp() {
-            pinInputs.forEach(i => i.value = '');
-            switchScreen('screen-login');
-        }
-
-        function captureScan() {
-            switchScreen('screen-tagging');
-        }
-
-        function saveDocument() {
-            const title = document.getElementById('tag-title').value || 'New Health Document';
-            document.getElementById('success-doc-name').innerText = title;
-            switchScreen('screen-success');
-        }
-
-        function viewSavedDocument() {
-            const title = document.getElementById('tag-title').value || 'Scanned Lab Document';
-            const category = document.getElementById('tag-category').value;
-            const date = document.getElementById('tag-date').value;
-            const notes = document.getElementById('tag-notes').value || 'No clinical notes provided.';
-            
-            openDocumentDetail(title, category, date, 'Amina Vault Upload', 'REC-9912', '1.1 MB', notes);
-        }
-
-        let currentDocTitle = '';
-
-        function openDocumentDetail(title, category, date, clinic, id, size, notes) {
-            currentDocTitle = title;
-            document.getElementById('detail-title').innerText = title;
-            document.getElementById('detail-title-header').innerText = title;
-            document.getElementById('detail-badge-cat').innerText = category.toUpperCase();
-            document.getElementById('detail-date').innerText = date + (clinic ? ' • ' + clinic : '');
-            document.getElementById('detail-id').innerText = id;
-            document.getElementById('detail-size').innerText = size;
-            document.getElementById('detail-notes').innerText = notes;
-            switchScreen('screen-detail');
-        }
-
-        function toggleStarCurrentDoc() {
-            alert('Quick Access star preference updated for ' + currentDocTitle);
-        }
-
-        // GDPR Right-to-Erasure Deletion Confirmation
-        function confirmDeleteDocument() {
-            if (confirm(`Are you sure you want to delete "${currentDocTitle}"? This action complies with GDPR right-to-erasure and cannot be undone.`)) {
-                alert('Document successfully purged from encrypted vault.');
-                switchScreen('screen-dashboard');
-            }
-        }
-
-        function filterDocuments(query) {
-            // Live filtering simulation
-            console.log("Filtering by: ", query);
-        }
-
-        function filterByCategory(categoryName) {
-            alert('Filtering vault by category: ' + categoryName);
-        }
-    </script>
-</body>
-</html>
+                            <span class="text-[11px] font-semibold text-emerald
